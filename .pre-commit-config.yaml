@@ -1,0 +1,19 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: no-commit-to-branch
+        args: [--branch, main]
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.86.0 # Get the latest from: https://github.com/antonbabenko/pre-commit-terraform/releases
+    hooks:
+      - id: terraform_fmt
+      - id: terraform_docs
+        args:
+          - '--args=--lockfile=false'
+          - '--hook-config=--path-to-file=README.md'
+          - '--hook-config=--add-to-existing-file=true'
+          - '--hook-config=--create-file-if-not-exist=true'
+      - id: terraform_tflint
